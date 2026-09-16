@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin</title></head>
+<body style="font-family:Arial;padding:20px;background:#f0f2f5">
+<div style="max-width:800px;margin:auto;background:white;padding:30px;border-radius:15px">
+<h1>📋 Admin Dashboard</h1>
+<a href="/">← Home</a> | Total: {{ files|length }} applications
+<hr>
+<table border="1" cellpadding="10" style="width:100%;border-collapse:collapse">
+<tr style="background:#003366;color:white"><th>File</th><th>Action</th></tr>
+{% for f in files %}
+<tr><td>{{ f }}</td><td><a href="/uploads/{{ f }}" target="_blank">View/Download</a></td></tr>
+{% endfor %}
+</table>
+{% if not files %}<p>No applications yet.</p>{% endif %}
+</div>
+</body>
+</html>
