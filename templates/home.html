@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head><title>SA UniApply</title></head>
-<body style="font-family:Arial;text-align:center;padding:40px;background:#f0f2f5">
-<h1 style="color:#003366">🎓 SA UniApply 2026</h1>
-<h2>Rome Brick 3 Complete!</h2>
-<p>What do you want to do today?</p>
-<a href="/start" style="background:green;color:white;padding:15px 30px;text-decoration:none;border-radius:10px;font-size:20px">📝 Apply Now</a>
-<p style="margin-top:30px"><a href="/admin">Admin View</a></p>
-</body>
-</html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.tailwindcss.com"></script><title>SA UniApply</title></head>
+<body class="bg-gray-50">
+<nav class="bg-white shadow p-4 flex justify-between"><div class="font-bold text-blue-800">🎓 SA UniApply 2026</div><div class="space-x-3 text-sm"><a href="/aps">APS Calculator</a><a href="/status">Status</a><a href="/admin?pwd=Isiphile2026">Admin</a><a href="/apply" class="bg-blue-700 text-white px-4 py-2 rounded-full">Apply Now</a></div></nav>
+<div class="max-w-6xl mx-auto p-6"><h1 class="text-4xl font-bold mt-10 text-blue-900">Apply to South African Universities 2026</h1><p class="text-gray-600 mt-2">We help Grade 12 learners apply to 26 universities - Like ApplyWithMe.co.za</p>
+<div class="grid md:grid-cols-3 gap-4 mt-8">{% for u in unis %}<div class="bg-white p-4 rounded-xl shadow"><h3 class="font-bold">{{u.name}}</h3><span class="text-xs px-2 py-1 rounded-full {% if u.color=='green' %}bg-green-100 text-green-700{% else %}bg-yellow-100 text-yellow-700{% endif %}">{{u.status}} - {{u.date}}</span></div>{% endfor %}</div>
+<div class="mt-10 text-center"><a href="/apply" class="bg-green-600 text-white px-10 py-4 rounded-full font-bold text-lg">Start Application →</a><p class="text-sm mt-3"><a href="/aps" class="text-blue-600 underline">Calculate your APS first</a></p></div></div>
+</body></html>
