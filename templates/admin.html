@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head><title>Admin</title></head>
-<body style="font-family:Arial;padding:20px;background:#f0f2f5">
-<div style="max-width:800px;margin:auto;background:white;padding:30px;border-radius:15px">
-<h1>📋 Admin Dashboard</h1>
-<a href="/">← Home</a> | Total: {{ files|length }} applications
-<hr>
-<table border="1" cellpadding="10" style="width:100%;border-collapse:collapse">
-<tr style="background:#003366;color:white"><th>File</th><th>Action</th></tr>
-{% for f in files %}
-<tr><td>{{ f }}</td><td><a href="/uploads/{{ f }}" target="_blank">View/Download</a></td></tr>
-{% endfor %}
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-gray-900 text-white min-h-screen p-6">
+<div class="max-w-4xl mx-auto"><h1 class="text-2xl font-bold">📋 Admin - {{total}} Files</h1><a href="/" class="text-blue-400">Home</a>
+<div class="bg-white text-black rounded mt-4 overflow-hidden">
+<table class="w-full text-sm"><tr class="bg-blue-900 text-white"><th class="p-2 text-left">File</th><th>Action</th></tr>
+{% for f in files %}<tr class="border-b"><td class="p-2 truncate">{{f}}</td><td class="p-2"><a href="/uploads/{{f}}" class="text-blue-600 underline" target="_blank">View/Download</a></td></tr>{% endfor %}
 </table>
-{% if not files %}<p>No applications yet.</p>{% endif %}
-</div>
-</body>
-</html>
+</div></div>
+</body></html>

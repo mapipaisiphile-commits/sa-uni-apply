@@ -1,36 +1,61 @@
-from flask import Flask, render_template, request, send_from_directory
 import os
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app = Flask(__name__)
-os.makedirs('uploads', exist_ok=True)
-os.makedirs('templates', exist_ok=True)
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+ADMIN_PASSWORD = "M@pip@isiphile05"  # Change this to your secret password!
+WHATSAPP_NUMBER = "27631266734"  # Put your WhatsApp number here e.g. 27821234567 (no +)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
-@app.route('/start', methods=['GET', 'POST'])
-def start():
+@app.route('/apply', methods=['GET', 'POST'])
+def apply():
     if request.method == 'POST':
-        name = request.form.get('fullname')
-        idnum = request.form.get('idnum')
-        with open(f"uploads/{idnum}_{name}.txt", "w", encoding="utf-8") as f:
-            f.write(f"Name: {name}\nID: {idnum}\nPhone: {request.form.get('phone')}\nAverage: {request.form.get('average')}\nCourse: {request.form.get('course')}\nDate: {datetime.now()}\n")
-        file = request.files.get('iddoc')
-        if file and file.filename:
-            file.save(os.path.join('uploads', f"{idnum}_{file.filename}"))
-        return f"<div style='text-align:center;padding:50px'><h1>✅ Thank You {name}!</h1><p>Your application for {request.form.get('course')} is received.</p><p>We will WhatsApp you on {request.form.get('phone')}</p><a href='/'>Home</a></div>"
+        name = request.form.get('name')
+        phone = request.form.get('phone')
+        uni = request.form.get('university')
+        
+        files_saved = []
+        for file in request.files.getlist('documents'):
+            if file.filename:
+                filename = f"{datetime.now().strftime('%m%d%H%M%S')}_{phone}_{secure_filename(name)}_{secure_filename(file.filename)}"
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                files_saved.append(filename)
+        
+        # Save info as txt
+        info_file = f"{datetime.now().strftime('%m%d%H%M%S')}_{phone}_{secure_filename(name)}.txt"
+        with open(os.path.join(UPLOAD_FOLDER, info_file), 'w') as f:
+            f.write(f"Name: {name}\nPhone: {phone}\nUniversity: {uni}\nDate: {datetime.now()}\nFiles: {files_saved}")
+        
+        return render_template('success.html', name=name, phone=phone, whatsapp=WHATSAPP_NUMBER)
     return render_template('apply.html')
 
 @app.route('/admin')
 def admin():
-    files = os.listdir('uploads')
-    return render_template('admin.html', files=files)
+    pwd = request.args.get('pwd')
+    if pwd != ADMIN_PASSWORD:
+        return '''
+        <div style="text-align:center; margin-top:100px; font-family:sans-serif">
+        <h2>🔒 Admin Locked</h2>
+        <p>Add password to link: ?pwd=Isiphile2026</p>
+        <p>Example: /admin?pwd=Isiphile2026</p>
+        <a href="/">Back Home</a>
+        </div>
+        '''
+    files = os.listdir(UPLOAD_FOLDER)
+    files.sort(reverse=True)
+    return render_template('admin.html', files=files, total=len(files))
 
 @app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory('uploads', filename)
+def download(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5001))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)

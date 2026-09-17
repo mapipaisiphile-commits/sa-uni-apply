@@ -1,23 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head><title>Apply - SA UniApply</title></head>
-<body style="font-family:Arial;padding:20px;background:#f0f2f5">
-<div style="max-width:600px;margin:auto;background:white;padding:30px;border-radius:15px">
-<h2>📝 Student Application</h2>
-<form method="POST" enctype="multipart/form-data">
-<label>Full Name:</label><br><input name="fullname" required style="width:100%;padding:10px;margin:10px 0"><br>
-<label>ID Number:</label><br><input name="idnum" required style="width:100%;padding:10px;margin:10px 0"><br>
-<label>Phone/WhatsApp:</label><br><input name="phone" required style="width:100%;padding:10px;margin:10px 0"><br>
-<label>Grade 12 Average %:</label><br><input name="average" type="number" required style="width:100%;padding:10px;margin:10px 0"><br>
-<label>Course You Want:</label><br>
-<select name="course" style="width:100%;padding:10px;margin:10px 0">
-<option>Diploma in IT</option><option>Business Management</option>
-<option>Engineering</option><option>Education</option><option>Nursing</option>
-</select><br>
-<label>Upload ID Document (PDF/Photo):</label><br><input type="file" name="iddoc" style="margin:10px 0"><br><br>
-<button type="submit" style="background:green;color:white;padding:15px;width:100%;border:none;border-radius:10px;font-size:18px">Submit Application</button>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.tailwindcss.com"></script><title>Apply</title></head>
+<body class="bg-gray-100 min-h-screen p-4">
+<div class="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-xl mt-10">
+<h2 class="text-2xl font-bold mb-6">📝 Student Application</h2>
+<form action="/apply" method="POST" enctype="multipart/form-data" class="space-y-4">
+<input name="name" placeholder="Full Name" required class="w-full border p-3 rounded">
+<input name="phone" placeholder="WhatsApp Number (e.g. 0812345678)" required class="w-full border p-3 rounded">
+<select name="university" class="w-full border p-3 rounded"><option>University of Johannesburg (UJ)</option><option>Wits</option><option>University of Pretoria (UP)</option><option>TUT</option><option>UNISA</option><option>UKZN</option><option>Other</option></select>
+<label class="block">Upload ID, Results, Proof: <input type="file" name="documents" multiple required class="w-full mt-2"></label>
+<button class="w-full bg-blue-700 text-white py-4 rounded-xl font-bold text-lg">Submit Application 🚀</button>
 </form>
-<a href="/">← Back Home</a>
+<p class="text-center text-sm mt-4">After submit, you will get WhatsApp payment instructions</p>
 </div>
-</body>
-</html>
+</body></html>
