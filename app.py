@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os, datetime
 
 app = Flask(__name__)
@@ -18,9 +18,25 @@ unis = [
 def home():
     return render_template('home.html', unis=unis)
 
-@app.route('/apply')
+@app.route('/apply', methods=['GET','POST'])
 def apply_page():
+    if request.method == 'POST':
+        f = request.files.get('file')
+        if f and f.filename != '':
+            filename = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_") + f.filename
+            f.save(os.path.join(UPLOAD_FOLDER, filename))
+        return render_template('succes.html')
     return render_template('apply.html')
+
+@app.route('/submit', methods=['GET','POST'])
+def submit():
+    if request.method == 'POST':
+        f = request.files.get('file')
+        if f and f.filename != '':
+            filename = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_") + f.filename
+            f.save(os.path.join(UPLOAD_FOLDER, filename))
+        return render_template('succes.html')
+    return redirect('/apply')
 
 @app.route('/aps', methods=['GET','POST'])
 def aps():
@@ -29,31 +45,23 @@ def aps():
         try:
             total = sum(int(request.form.get(f's{i}',0)) for i in range(1,8))
             score = total // 7
-        except: score = 0
+        except:
+            score = 0
     return render_template('aps.html', score=score)
 
 @app.route('/status')
 def status():
     return render_template('status.html', unis=unis)
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    f = request.files.get('file')
-    if f:
-        filename = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_") + f.filename
-        f.save(os.path.join(UPLOAD_FOLDER, filename))
-    return render_template('succes.html')
-
 @app.route('/admin')
 def admin():
     if request.args.get('pwd') != 'Isiphile2026':
         return "Unauthorized - Add ?pwd=Isiphile2026", 401
-    files = os.listdir(UPLOAD_FOLDER)
+    files = os.listdir(UPLOAD_FOLDER) if os.path.exists(UPLOAD_FOLDER) else []
     return render_template('admin.html', files=files, total=len(files))
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
-    from flask import send_from_directory
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == '__main__':
