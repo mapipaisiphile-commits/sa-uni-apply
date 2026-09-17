@@ -1,15 +1,66 @@
 <!DOCTYPE html>
-<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.tailwindcss.com"></script><title>Apply</title></head>
-<body class="bg-gray-100 min-h-screen p-4">
-<div class="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-xl mt-10">
-<h2 class="text-2xl font-bold mb-6">📝 Student Application</h2>
-<form action="/apply" method="POST" enctype="multipart/form-data" class="space-y-4">
-<input name="name" placeholder="Full Name" required class="w-full border p-3 rounded">
-<input name="phone" placeholder="WhatsApp Number (e.g. 0812345678)" required class="w-full border p-3 rounded">
-<select name="university" class="w-full border p-3 rounded"><option>University of Johannesburg (UJ)</option><option>Wits</option><option>University of Pretoria (UP)</option><option>TUT</option><option>UNISA</option><option>UKZN</option><option>Other</option></select>
-<label class="block">Upload ID, Results, Proof: <input type="file" name="documents" multiple required class="w-full mt-2"></label>
-<button class="w-full bg-blue-700 text-white py-4 rounded-xl font-bold text-lg">Submit Application 🚀</button>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply - SA Uni Apply 2026</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;padding:20px}
+.form{background:white;color:black;padding:20px;border-radius:12px;max-width:500px;margin:auto}
+input,select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc}
+label{font-weight:bold;font-size:14px;margin-top:10px;display:block}
+button{background:#16a34a;color:white;padding:14px;width:100%;border:none;border-radius:8px;font-weight:bold;margin-top:15px}
+small{color:gray}
+</style>
+</head>
+<body>
+<div class="form">
+<h2>Apply to SA Universities 2026</h2>
+<p>Select university and upload ALL documents</p>
+
+<form action="/submit" method="POST" enctype="multipart/form-data">
+
+<label>Full Name & Surname</label>
+<input type="text" name="fullname" required placeholder="Isiphile Mapipa">
+
+<label>ID Number</label>
+<input type="text" name="idnumber" required placeholder="0000000000000">
+
+<label>Phone / WhatsApp</label>
+<input type="text" name="phone" required placeholder="07...">
+
+<label>Select University</label>
+<select name="university" required>
+<option value="">-- Choose --</option>
+<option>University of Johannesburg (UJ)</option>
+<option>University of Pretoria (UP)</option>
+<option>WITS</option>
+<option>UNISA</option>
+<option>TUT</option>
+<option>University of Limpopo</option>
+<option>UJ + UP + WITS (3 Choices)</option>
+</select>
+
+<hr>
+
+<label>1. Certified ID Document *</label>
+<input type="file" name="file_id" accept=".pdf,.jpg,.png" required>
+
+<label>2. Grade 11 Final Report * (For current Grade 12s)</label>
+<input type="file" name="file_grade11" accept=".pdf,.jpg,.png" required>
+
+<label>3. Grade 12 Midyear / June / Term 2 Report *</label>
+<input type="file" name="file_grade12_mid" accept=".pdf,.jpg,.png" required>
+
+<label>4. Latest Academic Report / Matric Certificate (if completed)</label>
+<input type="file" name="file_matric" accept=".pdf,.jpg,.png">
+
+<label>5. Proof of Residence / Parent ID (if available)</label>
+<input type="file" name="file_proof" accept=".pdf,.jpg,.png">
+
+<button type="submit">Submit Application →</button>
+<small>By submitting, you agree we are an assistance service, not the university itself. Universities apply free on their official portals.</small>
+
 </form>
-<p class="text-center text-sm mt-4">After submit, you will get WhatsApp payment instructions</p>
 </div>
-</body></html>
+</body>
+</html>
