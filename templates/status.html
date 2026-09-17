@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script><title>Uni Status</title></head>
+<body class="bg-gray-50">
+<nav class="bg-white shadow p-4 flex justify-between"><div class="font-bold text-blue-800">🎓 SA UniApply</div><div class="space-x-2 text-sm"><a href="/">Home</a><a href="/aps">APS</a><a href="/apply" class="bg-blue-700 text-white px-3 py-1 rounded-full">Apply</a></div></nav>
+<div class="max-w-3xl mx-auto p-6">
+<h2 class="text-2xl font-bold mt-6">📊 University Application Status 2026</h2>
+<p class="text-sm text-gray-600 mb-4">Updated like ApplyWithMe.co.za</p>
+<div class="bg-white rounded-xl shadow overflow-hidden">
+<table class="w-full text-sm"><tr class="bg-blue-800 text-white"><th class="p-3 text-left">University</th><th>Status</th><th>Closing</th></tr>
+{% for u in unis %}<tr class="border-b"><td class="p-3 font-bold">{{u.name}}</td><td><span class="px-2 py-1 rounded-full text-xs {% if u.color=='green' %}bg-green-100 text-green-700{% else %}bg-yellow-100 text-yellow-700{% endif %}">{{u.status}}</span></td><td class="p-3">{{u.date}}</td></tr>{% endfor %}
+</table>
+</div>
+<div class="mt-6 text-center"><a href="/apply" class="bg-green-600 text-white px-8 py-3 rounded-full font-bold">Apply Before Closing!</a></div>
+</div>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script><title>APS Calculator</title></head>
+<body class="bg-gray-50">
+<nav class="bg-white shadow p-4 flex justify-between"><div class="font-bold text-blue-800">🎓 SA UniApply</div><div class="space-x-2 text-sm"><a href="/">Home</a><a href="/status">Status</a><a href="/apply" class="bg-blue-700 text-white px-3 py-1 rounded-full">Apply</a></div></nav>
+<div class="max-w-xl mx-auto bg-white mt-10 p-8 rounded-2xl shadow-xl">
+<h2 class="text-2xl font-bold">🧮 APS Calculator App</h2>
+<p class="text-sm text-gray-600 mb-6">Like ApplyWithMe - Enter your 7 best subjects %</p>
+<form method="POST" class="grid grid-cols-2 gap-3">
+<input name="s1" type="number" placeholder="Subject 1 %" required class="border p-3 rounded">
+<input name="s2" type="number" placeholder="Subject 2 %" required class="border p-3 rounded">
+<input name="s3" type="number" placeholder="Subject 3 %" required class="border p-3 rounded">
+<input name="s4" type="number" placeholder="Subject 4 %" required class="border p-3 rounded">
+<input name="s5" type="number" placeholder="Subject 5 %" required class="border p-3 rounded">
+<input name="s6" type="number" placeholder="Subject 6 %" required class="border p-3 rounded">
+<input name="s7" type="number" placeholder="Subject 7 %" required class="border p-3 rounded">
+<button class="col-span-2 bg-blue-700 text-white py-3 rounded-xl font-bold">Calculate APS</button>
+</form>
+{% if score is not none %}<div class="mt-6 bg-green-100 p-4 rounded-xl text-center"><p class="text-3xl font-bold text-green-700">{{score}} APS</p><p class="text-sm">You qualify for Diploma / Degree depending on Bachelor pass!</p></div>{% endif %}
+</div>
+</body></html>
