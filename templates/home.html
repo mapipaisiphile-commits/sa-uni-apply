@@ -1,8 +1,86 @@
 <!DOCTYPE html>
-<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.tailwindcss.com"></script><title>SA UniApply</title></head>
-<body class="bg-gray-50">
-<nav class="bg-white shadow p-4 flex justify-between"><div class="font-bold text-blue-800">🎓 SA UniApply 2026</div><div class="space-x-3 text-sm"><a href="/aps">APS Calculator</a><a href="/status">Status</a><a href="/admin?pwd=Isiphile2026">Admin</a><a href="/apply" class="bg-blue-700 text-white px-4 py-2 rounded-full">Apply Now</a></div></nav>
-<div class="max-w-6xl mx-auto p-6"><h1 class="text-4xl font-bold mt-10 text-blue-900">Apply to South African Universities 2026</h1><p class="text-gray-600 mt-2">We help Grade 12 learners apply to 26 universities - Like ApplyWithMe.co.za</p>
-<div class="grid md:grid-cols-3 gap-4 mt-8">{% for u in unis %}<div class="bg-white p-4 rounded-xl shadow"><h3 class="font-bold">{{u.name}}</h3><span class="text-xs px-2 py-1 rounded-full {% if u.color=='green' %}bg-green-100 text-green-700{% else %}bg-yellow-100 text-yellow-700{% endif %}">{{u.status}} - {{u.date}}</span></div>{% endfor %}</div>
-<div class="mt-10 text-center"><a href="/apply" class="bg-green-600 text-white px-10 py-4 rounded-full font-bold text-lg">Start Application →</a><p class="text-sm mt-3"><a href="/aps" class="text-blue-600 underline">Calculate your APS first</a></p></div></div>
-</body></html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SA Uni Apply 2026 - All 26 Universities</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;margin:0;padding:12px}
+.header{text-align:center;padding:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:1000px;margin:auto}
+@media(min-width:800px){.grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+.card{background:white;color:black;border-radius:12px;overflow:hidden;text-align:center;padding-bottom:10px}
+.card img{width:100%;height:90px;object-fit:cover;background:#ddd}
+.card h3{margin:6px 0 2px;font-size:13px;line-height:14px;height:28px}
+.badge{font-size:9px;padding:2px 5px;border-radius:8px;background:#dcfce7;color:green}
+.btn{display:block;margin:4px 8px;padding:8px;border-radius:7px;text-decoration:none;font-weight:bold;font-size:11px}
+.btn-apply{background:#16a34a;color:white}
+.btn-pros{background:#f1f5f9;color:#334155}
+</style>
+</head>
+<body>
+<div class="header">
+<h2>🇿🇦 SA Uni Apply 2026 - All 26 Universities</h2>
+<p>We help with documents. You apply on the OFFICIAL university website.</p>
+<a href="/apply" style="background:#facc15;color:black;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold;display:inline-block;">📤 Upload Documents (ID + Grade 11 + Grade 12)</a>
+<div style="margin-top:10px"><a href="/aps" style="color:#93c5fd;font-size:13px">Calculate APS Score →</a> | <a href="https://my.nsfas.org.za/" target="_blank" style="color:#93c5fd;font-size:13px">Apply for NSFAS →</a></div>
+</div>
+
+<div class="grid">
+
+<div class="card"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400"><h3>University of Johannesburg (UJ)</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://ulink.uj.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.uj.ac.za/studyatUJ/secure/applications/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1562774053-701939374585?w=400"><h3>University of Pretoria (UP)</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.up.ac.za/online-application" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.up.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1498243790123-9c844b1c75a9?w=400"><h3>WITS</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.wits.ac.za/applications/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.wits.ac.za/undergraduate/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400"><h3>University of Cape Town (UCT)</h3><span class="badge">Open 31 Jul</span><a class="btn btn-apply" href="http://applyonline.uct.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://uct.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400"><h3>Stellenbosch (SU)</h3><span class="badge">Open 31 Jul</span><a class="btn btn-apply" href="https://www.maties.com/apply.html" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.sun.ac.za/english/maties/apply" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400"><h3>UKZN</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://ww2.applications.ukzn.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://caocheck.ukzn.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400"><h3>NWU</h3><span class="badge">Open 31 Aug</span><a class="btn btn-apply" href="https://studies.nwu.ac.za/studies/apply" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://studies.nwu.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=400"><h3>University of Free State (UFS)</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://apply.ufs.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.ufs.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=400"><h3>Rhodes University</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://ross.ru.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.ru.ac.za/admissiongateway/application/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?w=400"><h3>Nelson Mandela (NMU)</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://apply.mandela.ac.za/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.mandela.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"><h3>UWC</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.uwc.ac.za/admission-and-fees/apply" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.uwc.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400"><h3>UNISA</h3><span class="badge">Open 15 Oct</span><a class="btn btn-apply" href="https://www.unisa.ac.za/apply" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.unisa.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400"><h3>Fort Hare (UFH)</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.ufh.ac.za/apply/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.ufh.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400"><h3>University of Limpopo</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.ul.ac.za/index.php?Entity=Apply%20Now" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.ul.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400"><h3>University of Venda</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.univen.ac.za/apply/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.univen.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400"><h3>Walter Sisulu (WSU)</h3><span class="badge">Open 30 Oct</span><a class="btn btn-apply" href="https://www.wsu.ac.za/index.php/walter-sisulu-university-online-application" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.wsu.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1541829070764-84a7b71d6e12?w=400"><h3>UniZulu</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.unizulu.ac.za/apply-here/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.unizulu.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400"><h3>UniMpumalanga (UMP)</h3><span class="badge">Open 30 Nov</span><a class="btn btn-apply" href="https://www.ump.ac.za/Applications" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.ump.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400"><h3>Sol Plaatje (SPU)</h3><span class="badge">Open 30 Nov</span><a class="btn btn-apply" href="https://www.spu.ac.za/index.php/apply-now/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.spu.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400"><h3>Sefako Makgatho (SMU)</h3><span class="badge">Open 31 Jul</span><a class="btn btn-apply" href="https://www.smu.ac.za/students/apply/online-application/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.smu.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400"><h3>TUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.tut.ac.za/study-at-tut/i-want-to-study/apply-for-admission" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.tut.ac.za/prospectus" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400"><h3>DUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.dut.ac.za/apply/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.dut.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?w=400"><h3>CPUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.cput.ac.za/study/apply" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.cput.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=400"><h3>CUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.cut.ac.za/online-application" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.cut.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400"><h3>VUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.vut.ac.za/apply/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.vut.ac.za/" target="_blank">Prospectus</a></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1501504905252-473cdee68f94?w=400"><h3>MUT</h3><span class="badge">Open 30 Sep</span><a class="btn btn-apply" href="https://www.mut.ac.za/apply/" target="_blank">Official Apply</a><a class="btn btn-pros" href="https://www.mut.ac.za/" target="_blank">Prospectus</a></div>
+
+</div>
+
+<p style="text-align:center;margin-top:20px;font-size:11px;color:#94a3b8">We are a private application assistance service. We are NOT any university. Official applications are FREE on university websites. Our R350 is a service fee for document help, data, scanning & WhatsApp support.<br>WhatsApp Help: +27 73 591 3240</p>
+</body>
+</html>
