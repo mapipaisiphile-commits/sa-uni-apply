@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"><title>SA UniApply 2026</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+.hero{padding:40px 20px;text-align:center;max-width:900px;margin:auto}
+.hero h1{font-size:36px;margin:10px 0}
+.hero p{color:#cbd5e1;font-size:18px;line-height:1.5}
+.btn{display:inline-block;padding:16px 30px;border-radius:12px;text-decoration:none;font-weight:bold;margin:10px}
+.btn-yellow{background:#facc15;color:#000}
+.btn-dark{background:#1e293b;color:white;border:1px solid #334155}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1100px;margin:30px auto;padding:20px}
+.card{background:#1e293b;border-radius:20px;padding:25px;border:1px solid #334155}
+.card h3{color:#facc15}
+.nsfas{max-width:1100px;margin:30px auto;background:#fef9c3;color:#000;border-radius:20px;padding:25px}
+.nsfas h2{color:#713f12}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+@media(max-width:700px){.doc-grid{grid-template-columns:1fr}}
+.closing{background:#991b1b;color:white;padding:10px 15px;border-radius:10px;display:inline-block;font-weight:bold;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>🇿🇦 SA UniApply 2026 - All 26 Universities</h1>
+<p><b>What is this website?</b><br>
+SA UniApply helps Grade 11 & 12 learners find the right course, check APS & required subjects, and apply directly on the OFFICIAL university website. We don't charge to apply - we guide you!</p>
+<p>✅ Check APS Score & Requirements<br>✅ Find Prospectus<br>✅ Apply Safely on Official Sites<br>✅ NSFAS Funding Guide</p>
+<p>Trusted by {{count}}+ learners</p>
+<a href="/universities" class="btn btn-yellow">🎓 View All Universities →</a>
+<a href="https://my.nsfas.org.za" target="_blank" class="btn btn-dark">Apply for NSFAS →</a>
+</div>
+
+<div class="steps">
+<div class="card"><h3>1. Choose University</h3><p>Browse 26 universities. Check closing dates and prospectus.</p></div>
+<div class="card"><h3>2. Check Courses & Requirements</h3><p>Click Official Apply to see all courses with APS, subjects needed, faculty and duration.</p></div>
+<div class="card"><h3>3. Apply Officially</h3><p>We redirect you to the official university portal. No scams, 100% safe.</p></div>
+</div>
+
+<div class="nsfas">
+<h2>💰 NSFAS 2026 Funding</h2>
+<p>NSFAS pays for: Tuition + Accommodation + Books + Transport + Food allowance</p>
+<div class="doc-grid">
+<div>
+<b>📋 Documents You Need Before Applying:</b>
+<ul>
+{% for doc in nsfas.documents %}
+<li>{{doc}}</li>
+{% endfor %}
+</ul>
+</div>
+<div>
+<p><b>All certified copies must NOT be older than 3 months</b></p>
+<div class="closing">⏰ CLOSING DATE: {{nsfas.closing_date}} - Don't Be Late!</div><br><br>
+<a href="https://my.nsfas.org.za" target="_blank" style="background:#166534;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold">Apply on NSFAS Portal →</a>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:20px;color:#64748b">© 2026 SA UniApply - Not affiliated with universities. We guide to official sites.</div>
+</body>
+</html>

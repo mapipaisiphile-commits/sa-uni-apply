@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SA UniApply 2026</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+.hero{padding:35px 20px;text-align:center;max-width:900px;margin:auto}
+.hero h1{font-size:36px;margin:10px 0}
+.hero p{color:#cbd5e1;font-size:17px;line-height:1.5}
+.options{max-width:1000px;margin:30px auto;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px}
+@media(max-width:700px){.options{grid-template-columns:1fr}}
+.opt-card{border-radius:22px;padding:28px;text-align:center;border:2px solid transparent}
+.opt-uni{background:linear-gradient(135deg,#1e3a8a,#1e40af);border-color:#3b82f6}
+.opt-nsfas{background:linear-gradient(135deg,#fef9c3,#fde047);color:#000;border-color:#facc15}
+.opt-card h2{margin:0 0 10px 0;font-size:24px}
+.opt-card p{margin:10px 0 20px 0;font-size:15px;line-height:1.4;opacity:0.9}
+.btn{display:inline-block;padding:14px 26px;border-radius:12px;text-decoration:none;font-weight:bold;font-size:16px}
+.btn-white{background:white;color:#1e3a8a}
+.btn-black{background:#000;color:#facc15}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1100px;margin:20px auto;padding:20px}
+.step-card{background:#1e293b;border-radius:20px;padding:20px;border:1px solid #334155}
+.step-card h3{color:#facc15;margin:0 0 8px 0}
+.step-card p{color:#94a3b8;margin:0;font-size:14px}
+.nsfas-detail{max-width:1100px;margin:20px auto;background:white;color:#000;border-radius:20px;padding:25px}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.doc-grid{grid-template-columns:1fr}}
+.doc-list{background:#f8fafc;border-radius:15px;padding:15px}
+.closing{background:#dc2626;color:white;padding:12px 18px;border-radius:12px;display:inline-block;font-weight:bold;font-size:18px;margin-top:10px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>🇿🇦 SA UniApply 2026</h1>
+<h3 style="color:#facc15;margin:0">All 26 Universities in One Place</h3>
+<p style="margin-top:15px"><b>What is this website?</b><br>
+We help Grade 11 & 12 learners check APS, required subjects, prospectus and apply SAFELY on the official university website. We also guide you for NSFAS funding. No scams, no fees.</p>
+<p style="color:#64748b">Trusted by {{count}}+ learners</p>
+</div>
+
+<!-- TWO OPTIONS - MAIN REQUEST -->
+<div class="options">
+  <div class="opt-card opt-uni">
+    <h2>🎓 Option 1: Apply for University</h2>
+    <p>Choose your university, check courses, APS & subjects required, then apply on the official university portal.</p>
+    <p>✅ 26 Universities<br>✅ Prospectus & Closing Dates<br>✅ Courses with Requirements</p>
+    <a href="/universities" class="btn btn-white">Apply for University →</a>
+  </div>
+
+  <div class="opt-card opt-nsfas">
+    <h2>💰 Option 2: Apply for NSFAS</h2>
+    <p>Government bursary that pays for tuition, accommodation, books and living costs. Don't miss the deadline!</p>
+    <p>✅ Tuition + Accommodation<br>✅ Book & Food Allowance<br>✅ Closing: 31 Oct 2026</p>
+    <a href="#nsfas-section" class="btn btn-black">Apply for NSFAS →</a>
+  </div>
+</div>
+
+<div class="steps">
+<div class="step-card"><h3>1. Calculate APS</h3><p>Use our APS calculator to see what courses you qualify for.</p></div>
+<div class="step-card"><h3>2. Check Requirements</h3><p>We show you APS, required subjects like Maths L6, English L5.</p></div>
+<div class="step-card"><h3>3. Official Apply</h3><p>Click Official Apply - we send you to the real university site.</p></div>
+</div>
+
+<!-- NSFAS SECTION -->
+<div id="nsfas-section" class="nsfas-detail">
+<h2 style="margin:0">💰 NSFAS 2026 - Full Guide</h2>
+<p>NSFAS covers: <b>Tuition + Accommodation + Books + Transport + Food</b></p>
+
+<div class="doc-grid">
+<div class="doc-list">
+<b>📋 Documents You Need BEFORE Applying for NSFAS:</b>
+<ul style="line-height:1.6;margin-top:10px">
+{% for doc in nsfas.documents %}
+<li>{{doc}}</li>
+{% endfor %}
+</ul>
+<small style="color:#dc2626"><b>NB: All certified copies must NOT be older than 3 months!</b></small>
+</div>
+<div>
+<h3 style="color:#166534">Who qualifies?</h3>
+<ul style="font-size:14px;line-height:1.6">
+<li>South African citizen</li>
+<li>Combined household income less than R350,000 per year</li>
+<li>SASSA grant recipients automatically qualify</li>
+<li>Grade 12 or already studying</li>
+</ul>
+<div class="closing">⏰ CLOSING DATE: {{nsfas.closing_date}}</div>
+<br><br>
+<a href="https://my.nsfas.org.za" target="_blank" style="background:#166534;color:white;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:bold;display:inline-block">Go to Official NSFAS Portal →</a>
+<br><br>
+<a href="/universities" style="color:#1e3a8a;font-weight:bold">First apply for university → Then apply for NSFAS</a>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:25px;color:#475569;font-size:13px">
+© 2026 SA UniApply - We guide you to OFFICIAL sites. Not affiliated with DHET/NSFAS/Universities.
+</div>
+
+</body>
+</html>
