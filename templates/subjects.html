@@ -1,25 +1,239 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Enter Subjects</title>
-<style>body{font-family:Arial;background:#0f172a;color:white;margin:0;padding:15px}.box{max-width:1000px;margin:0 auto;background:white;color:black;border-radius:16px;padding:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid{grid-template-columns:1fr}}.subject{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:0;overflow:hidden}.subject-inner{padding:15px}.subject img{width:100%;height:90px;object-fit:cover}.subject label{font-weight:bold;display:block;font-size:13px;color:#0f172a}.subject select,.subject input{width:100%;padding:10px;border-radius:8px;border:1px solid #cbd5e1;margin-top:5px}.percent{display:flex;gap:8px;align-items:center;margin-top:8px}.percent input{flex:1;background:#fffbeb;border:2px solid #facc15;font-weight:bold}.btn{background:#2563eb;color:white;padding:15px;border-radius:12px;border:none;width:100%;font-weight:bold;font-size:18px;margin-top:20px;cursor:pointer}.back{color:#facc15;text-decoration:none}</style>
-</head><body><a href="/" class="back">← Back to Home</a><div class="box"><h2 style="text-align:center">📚 Enter Your Subjects + %</h2><form action="/calculate" method="POST"><div class="grid">
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check Requirements - Enter Subjects</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;margin:0;padding:15px}
+.box{max-width:1050px;margin:0 auto;background:white;color:black;border-radius:16px;padding:20px}
+h2{text-align:center;color:#0f172a}
+p.sub{text-align:center;color:#64748b;font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.subject{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;overflow:hidden}
+.subject img{width:100%;height:85px;object-fit:cover}
+.inner{padding:12px}
+.subject label{font-weight:bold;display:block;font-size:13px;color:#0f172a;margin-bottom:4px}
+.subject select,.subject input{width:100%;padding:11px;border-radius:8px;border:1px solid #cbd5e1;margin-top:5px;font-size:14px}
+.percent{display:flex;gap:8px;align-items:center;margin-top:8px}
+.percent input{flex:1;background:#fffbeb;border:2px solid #facc15;font-weight:bold}
+.btn{background:#2563eb;color:white;padding:16px;border-radius:12px;border:none;width:100%;font-weight:bold;font-size:18px;margin-top:22px;cursor:pointer}
+.back{color:#facc15;text-decoration:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:bold;margin-bottom:6px}
+.blue-badge{background:#dbeafe;color:#1e40af}
+.green-badge{background:#dcfce7;color:#166534}
+</style>
+</head>
+<body>
+<a href="/" class="back">← Back to Home</a>
+<div class="box">
+<h2>📚 Check Requirements - Enter Your Subjects + %</h2>
+<p class="sub">Example: Home Language = IsiXhosa 75% - Every block has % box</p>
 
-<div class="subject" style="border-color:#2563eb"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=200&fit=crop"><div class="subject-inner"><label>1. HOME LANGUAGE</label><select name="hl"><option>IsiXhosa Home Language</option><option>IsiZulu Home Language</option><option>English Home Language</option><option>Afrikaans Home Language</option><option>Sepedi Home Language</option></select><div class="percent"><input type="number" name="hl_pct" placeholder="75" required><span><b>%</b></span></div></div></div>
+<form action="/calculate" method="POST">
+<div class="grid">
 
-<div class="subject" style="border-color:#2563eb"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=200&fit=crop"><div class="subject-inner"><label>2. FIRST ADDITIONAL</label><select name="fal"><option>English First Additional</option><option>Afrikaans First Additional</option></select><div class="percent"><input type="number" name="fal_pct" placeholder="68" required><span><b>%</b></span></div></div></div>
+<!-- BLOCK 1: HOME LANGUAGE - ALL SA LANGUAGES -->
+<div class="subject" style="border-color:#2563eb">
+<img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500">
+<div class="inner">
+<span class="badge blue-badge">BLOCK 1</span>
+<label>1. HOME LANGUAGE - All SA Languages</label>
+<select name="hl" required>
+<option value="">Select Home Language</option>
+<option>IsiXhosa Home Language</option>
+<option>IsiZulu Home Language</option>
+<option>Sepedi (Sesotho sa Leboa) Home Language</option>
+<option>Sesotho Home Language</option>
+<option>Setswana Home Language</option>
+<option>SiSwati Home Language</option>
+<option>Tshivenda Home Language</option>
+<option>Xitsonga Home Language</option>
+<option>Afrikaans Home Language</option>
+<option>English Home Language</option>
+<option>IsiNdebele Home Language</option>
+</select>
+<div class="percent"><input type="number" name="hl_pct" placeholder="Enter % e.g 75" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject"><img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&h=200&fit=crop"><div class="subject-inner"><label>3. MATHS</label><select><option>Mathematics</option><option>Maths Literacy</option><option>Technical Maths</option></select><div class="percent"><input type="number" name="maths_pct" placeholder="55" required><span><b>%</b></span></div></div></div>
+<!-- BLOCK 2: FIRST ADDITIONAL - ALL SA LANGUAGES -->
+<div class="subject" style="border-color:#2563eb">
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500">
+<div class="inner">
+<span class="badge blue-badge">BLOCK 2</span>
+<label>2. FIRST ADDITIONAL LANGUAGE - All SA Languages</label>
+<select name="fal" required>
+<option value="">Select First Additional</option>
+<option>English First Additional Language</option>
+<option>Afrikaans First Additional Language</option>
+<option>IsiXhosa First Additional Language</option>
+<option>IsiZulu First Additional Language</option>
+<option>Sepedi First Additional Language</option>
+<option>Sesotho First Additional Language</option>
+<option>Setswana First Additional Language</option>
+<option>SiSwati First Additional Language</option>
+<option>Tshivenda First Additional Language</option>
+<option>Xitsonga First Additional Language</option>
+<option>IsiNdebele First Additional Language</option>
+</select>
+<div class="percent"><input type="number" name="fal_pct" placeholder="Enter % e.g 68" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop"><div class="subject-inner"><label>4. LIFE ORIENTATION</label><select><option>Life Orientation</option></select><div class="percent"><input type="number" name="lo_pct" placeholder="80"><span><b>%</b></span></div></div></div>
+<!-- BLOCK 3: MATHS -->
+<div class="subject">
+<img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=500">
+<div class="inner">
+<span class="badge blue-badge">BLOCK 3</span>
+<label>3. MATHS</label>
+<select name="maths_type" required>
+<option value="">Select Maths Type</option>
+<option>Mathematics</option>
+<option>Mathematical Literacy</option>
+<option>Technical Mathematics</option>
+</select>
+<div class="percent"><input type="number" name="maths_pct" placeholder="Enter % e.g 55" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-color:#16a34a"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=200&fit=crop"><div class="subject-inner"><label>5. SUBJECT 5 - Non-Language</label><select name="s5"><option>Physical Sciences</option><option>Life Sciences</option><option>Technical Sciences</option><option>Accounting</option><option>Engineering Graphics and Design (EGD)</option><option>Business Studies</option><option>Geography</option><option>History</option><option>Economics</option><option>CAT</option><option>IT</option><option>Consumer Studies</option><option>Tourism</option><option>Hospitality</option></select><div class="percent"><input type="number" name="s5_pct" required placeholder="%"><span><b>%</b></span></div></div></div>
+<!-- BLOCK 4: LO -->
+<div class="subject">
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500">
+<div class="inner">
+<span class="badge blue-badge">BLOCK 4</span>
+<label>4. LIFE ORIENTATION</label>
+<select><option>Life Orientation</option></select>
+<div class="percent"><input type="number" name="lo_pct" placeholder="Enter % e.g 80" min="0" max="100"><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-color:#16a34a"><img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=400&h=200&fit=crop"><div class="subject-inner"><label>6. SUBJECT 6 - Non-Language</label><select name="s6"><option>Life Sciences</option><option>Physical Sciences</option><option>Accounting</option><option>Business Studies</option><option>EGD</option><option>Geography</option><option>Economics</option></select><div class="percent"><input type="number" name="s6_pct" required placeholder="%"><span><b>%</b></span></div></div></div>
+<!-- BLOCK 5 TO 10 - YOUR EXACT LIST WITH ALL OPTIONS -->
+<div class="subject" style="border-color:#16a34a">
+<img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500">
+<div class="inner">
+<span class="badge green-badge">BLOCK 5</span>
+<label>5. SUBJECT 5 - Choose from Full List</label>
+<select name="s5" required>
+<option value="">Select Subject</option>
+<optgroup label="Mathematics & Sciences">
+<option>Mathematics</option><option>Mathematical Literacy</option><option>Technical Mathematics</option><option>Physical Sciences</option><option>Technical Sciences</option><option>Life Sciences</option><option>Marine Sciences</option>
+</optgroup>
+<optgroup label="Business & Economics">
+<option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option>
+</optgroup>
+<optgroup label="Engineering & Technology">
+<option>Engineering Graphics and Design (EGD)</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>Information Technology (IT)</option><option>Computer Applications Technology (CAT)</option>
+</optgroup>
+<optgroup label="Agriculture & Maritime">
+<option>Agricultural Technology</option><option>Agricultural Science</option><option>Agricultural Management Practices</option><option>Nautical Science</option>
+</optgroup>
+<optgroup label="Humanities & Arts">
+<option>Geography</option><option>History</option><option>Religion Studies</option><option>Life Orientation</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option>
+</optgroup>
+</select>
+<div class="percent"><input type="number" name="s5_pct" placeholder="Enter %" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-color:#16a34a"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop"><div class="subject-inner"><label>7. SUBJECT 7 - Non-Language</label><select name="s7"><option>Accounting</option><option>Business Studies</option><option>Physical Sciences</option><option>Life Sciences</option><option>History</option><option>Tourism</option><option>Consumer Studies</option></select><div class="percent"><input type="number" name="s7_pct" required placeholder="%"><span><b>%</b></span></div></div></div>
+<div class="subject" style="border-color:#16a34a">
+<img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=500">
+<div class="inner">
+<span class="badge green-badge">BLOCK 6</span>
+<label>6. SUBJECT 6 - Choose from Full List</label>
+<select name="s6" required>
+<option value="">Select Subject</option>
+<optgroup label="Mathematics & Sciences">
+<option>Mathematics</option><option>Mathematical Literacy</option><option>Technical Mathematics</option><option>Physical Sciences</option><option>Technical Sciences</option><option>Life Sciences</option><option>Marine Sciences</option>
+</optgroup>
+<optgroup label="Business & Economics">
+<option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option>
+</optgroup>
+<optgroup label="Engineering & Technology">
+<option>Engineering Graphics and Design (EGD)</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>Information Technology (IT)</option><option>Computer Applications Technology (CAT)</option>
+</optgroup>
+<optgroup label="Agriculture & Maritime">
+<option>Agricultural Technology</option><option>Agricultural Science</option><option>Agricultural Management Practices</option><option>Nautical Science</option>
+</optgroup>
+<optgroup label="Humanities & Arts">
+<option>Geography</option><option>History</option><option>Religion Studies</option><option>Life Orientation</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option>
+</optgroup>
+</select>
+<div class="percent"><input type="number" name="s6_pct" placeholder="Enter %" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-style:dashed"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop"><div class="subject-inner"><label>8. EXTRA</label><select><option>Optional</option><option>Physical Sciences</option><option>Accounting</option></select><div class="percent"><input type="number" name="s8_pct" placeholder="%"><span><b>%</b></span></div></div></div>
+<div class="subject" style="border-color:#16a34a">
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500">
+<div class="inner">
+<span class="badge green-badge">BLOCK 7</span>
+<label>7. SUBJECT 7 - Choose from Full List</label>
+<select name="s7" required>
+<option value="">Select Subject</option>
+<optgroup label="Mathematics & Sciences">
+<option>Mathematics</option><option>Mathematical Literacy</option><option>Technical Mathematics</option><option>Physical Sciences</option><option>Technical Sciences</option><option>Life Sciences</option><option>Marine Sciences</option>
+</optgroup>
+<optgroup label="Business & Economics">
+<option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option>
+</optgroup>
+<optgroup label="Engineering & Technology">
+<option>Engineering Graphics and Design (EGD)</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>Information Technology (IT)</option><option>Computer Applications Technology (CAT)</option>
+</optgroup>
+<optgroup label="Agriculture & Maritime">
+<option>Agricultural Technology</option><option>Agricultural Science</option><option>Agricultural Management Practices</option><option>Nautical Science</option>
+</optgroup>
+<optgroup label="Humanities & Arts">
+<option>Geography</option><option>History</option><option>Religion Studies</option><option>Life Orientation</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option>
+</optgroup>
+</select>
+<div class="percent"><input type="number" name="s7_pct" placeholder="Enter %" min="0" max="100" required><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-style:dashed"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=200&fit=crop"><div class="subject-inner"><label>9. EXTRA</label><select><option>Optional</option><option>Business Studies</option><option>Geography</option></select><div class="percent"><input type="number" name="s9_pct" placeholder="%"><span><b>%</b></span></div></div></div>
+<!-- BLOCK 8,9,10 EXTRA -->
+<div class="subject" style="border-style:dashed">
+<img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500">
+<div class="inner">
+<span class="badge" style="background:#fef3c7">EXTRA 8</span>
+<label>8. EXTRA SUBJECT (If 10 subjects)</label>
+<select name="s8">
+<option value="">Optional - Select</option>
+<option>Mathematics</option><option>Physical Sciences</option><option>Life Sciences</option><option>Technical Sciences</option><option>Marine Sciences</option><option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option><option>EGD</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>IT</option><option>CAT</option><option>Agricultural Science</option><option>Geography</option><option>History</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option><option>Religion Studies</option><option>Nautical Science</option>
+</select>
+<div class="percent"><input type="number" name="s8_pct" placeholder="Enter %"><span><b>%</b></span></div>
+</div>
+</div>
 
-<div class="subject" style="border-style:dashed"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=200&fit=crop"><div class="subject-inner"><label>10. EXTRA</label><select><option>Optional</option><option>Life Sciences</option><option>Tourism</option></select><div class="percent"><input type="number" name="s10_pct" placeholder="%"><span><b>%</b></span></div></div></div>
+<div class="subject" style="border-style:dashed">
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500">
+<div class="inner">
+<span class="badge" style="background:#fef3c7">EXTRA 9</span>
+<label>9. EXTRA SUBJECT</label>
+<select name="s9">
+<option value="">Optional - Select</option>
+<option>Mathematics</option><option>Physical Sciences</option><option>Life Sciences</option><option>Technical Sciences</option><option>Marine Sciences</option><option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option><option>EGD</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>IT</option><option>CAT</option><option>Agricultural Science</option><option>Geography</option><option>History</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option><option>Religion Studies</option><option>Nautical Science</option>
+</select>
+<div class="percent"><input type="number" name="s9_pct" placeholder="Enter %"><span><b>%</b></span></div>
+</div>
+</div>
 
-</div><button class="btn" type="submit">Calculate APS & Show Courses I Qualify For →</button></form></div></body></html>
+<div class="subject" style="border-style:dashed">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500">
+<div class="inner">
+<span class="badge" style="background:#fef3c7">EXTRA 10</span>
+<label>10. EXTRA SUBJECT</label>
+<select name="s10">
+<option value="">Optional - Select</option>
+<option>Mathematics</option><option>Physical Sciences</option><option>Life Sciences</option><option>Technical Sciences</option><option>Marine Sciences</option><option>Accounting</option><option>Business Studies</option><option>Economics</option><option>Tourism</option><option>Hospitality Studies</option><option>Consumer Studies</option><option>Maritime Economics</option><option>EGD</option><option>Mechanical Technology</option><option>Civil Technology</option><option>Electrical Technology</option><option>IT</option><option>CAT</option><option>Agricultural Science</option><option>Geography</option><option>History</option><option>Dramatic Arts</option><option>Music</option><option>Dance Studies</option><option>Design Studies</option><option>Sport and Exercise Science</option><option>Religion Studies</option><option>Nautical Science</option>
+</select>
+<div class="percent"><input type="number" name="s10_pct" placeholder="Enter %"><span><b>%</b></span></div>
+</div>
+</div>
+
+</div>
+<button class="btn" type="submit">Calculate My APS & Show Courses I Qualify For →</button>
+<p style="text-align:center;color:#94a3b8;font-size:12px;margin-top:10px">APS: 80-100%=7, 70-79%=6, 60-69%=5, 50-59%=4, 40-49%=3, 30-39%=2</p>
+</form>
+</div>
+</body>
+</html>
