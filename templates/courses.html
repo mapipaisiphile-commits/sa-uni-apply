@@ -12,7 +12,6 @@ body{font-family:Arial;background:#f8fafc;margin:0}
 .btn-green{background:#16a34a;color:white}
 .btn-blue{background:#002147;color:white}
 .btn-yellow{background:#facc15;color:black}
-.badge{background:#dbeafe;color:#1e40af;padding:6px 12px;border-radius:20px;font-size:13px;display:inline-block;margin:5px}
 </style>
 </head>
 <body>
@@ -20,27 +19,13 @@ body{font-family:Arial;background:#f8fafc;margin:0}
 <a href="/universities">← Back to All 26 Universities</a>
 <h1>{{uni.name}}</h1>
 <p>{{uni.location}} • Closing: {{uni.closing}}</p>
-<span class="badge">Official University Website Only</span>
-<span class="badge">No Scams - We Redirect You</span>
 </div>
-
 <div class="box">
 <h2>Apply to {{uni.name}} for 2026</h2>
-<p style="color:#64748b">You will be redirected to the OFFICIAL {{uni.name}} application portal. We do not take your details or your money.</p>
-
-<div style="background:#f8fafc;padding:15px;border-radius:12px;margin:20px 0;text-align:left">
-<b>What you need:</b><br>
-✓ Certified ID copy<br>
-✓ Grade 11 & Grade 12 results<br>
-✓ Proof of residence<br>
-✓ Email & Cellphone number
-</div>
-
+<p style="color:#64748b">You will be redirected to the OFFICIAL {{uni.name}} application portal.</p>
 <a href="{{uni.apply_link}}" target="_blank" class="btn btn-green">✅ Apply Officially on {{uni.code}} Portal ↗</a>
 <a href="{{uni.apply_link}}" target="_blank" class="btn btn-blue">📄 Download Prospectus 2026 →</a>
 <a href="/universities" class="btn btn-yellow">← View Other 25 Universities</a>
-
-<p style="font-size:12px;color:#94a3b8;margin-top:20px">Closing Date: {{uni.closing}} - Don't wait! Apply early.<br>© 2026 SA UniApply - We guide you to official sites only.</p>
 </div>
 </body>
 </html>

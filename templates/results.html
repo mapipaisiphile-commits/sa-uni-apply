@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Qualify</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white;padding:15px}
+.box{max-width:1000px;margin:0 auto}
+.aps-card{background:#facc15;color:black;padding:20px;border-radius:16px;text-align:center;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.course{background:white;color:black;border-radius:12px;padding:15px}
+.btn{display:block;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:bold;margin-top:8px}
+.green{background:#16a34a;color:white}
+.blue{background:#2563eb;color:white}
+.back{color:#facc15;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+<a href="/subjects" class="back">← Edit Subjects</a>
+<div class="aps-card">
+<h1>Your APS: {{aps}}</h1>
+<p>You qualify for <b>{{qualified|length}}</b> courses out of {{total}}</p>
+</div>
+<div class="grid">
+{% for c in qualified %}
+<div class="course">
+<small style="background:#dbeafe;padding:3px 8px;border-radius:10px">{{c.uni}} • APS {{c.aps}}</small>
+<h4 style="margin:8px 0">{{c.name}}</h4>
+<small>{{c.faculty}} • Needs APS {{c.aps}}{% if c.maths_req>0 %} • Maths {{c.maths_req}}%{% endif %}</small>
+<a href="{{c.apply_link}}" target="_blank" class="btn green">Apply at {{c.uni}} Official ↗</a>
+</div>
+{% endfor %}
+</div>
+<div style="text-align:center;margin-top:30px">
+<a href="/universities" style="background:white;color:black;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold">View All 26 Universities →</a>
+</div>
+</div>
+</body>
+</html>

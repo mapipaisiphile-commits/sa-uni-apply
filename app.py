@@ -31,33 +31,81 @@ UNIVERSITIES = [
     {"code":"UMP","name":"University of Mpumalanga (UMP)","location":"Mbombela","closing":"30 Sep","apply_link":"https://www.ump.ac.za/apply/"},
 ]
 
+COURSES_DB = [
+    {"name":"BSc Information Technology","uni":"UJ","code":"UJ","aps":26,"faculty":"Science","maths_req":50},
+    {"name":"Diploma in Nursing","uni":"UJ","code":"UJ","aps":26,"faculty":"Health","maths_req":0},
+    {"name":"BCom Accounting","uni":"UJ","code":"UJ","aps":28,"faculty":"Business","maths_req":50},
+    {"name":"BSc Computer Science","uni":"UP","code":"UP","aps":30,"faculty":"Science","maths_req":60},
+    {"name":"BSc Physics","uni":"UP","code":"UP","aps":32,"faculty":"Science","maths_req":60},
+    {"name":"MBChB Medicine","uni":"UP","code":"UP","aps":35,"faculty":"Health","maths_req":60},
+    {"name":"BSc Engineering","uni":"WITS","code":"WITS","aps":34,"faculty":"Engineering","maths_req":65},
+    {"name":"BCom Law","uni":"WITS","code":"WITS","aps":32,"faculty":"Commerce","maths_req":0},
+    {"name":"BSc Life Sciences","uni":"WITS","code":"WITS","aps":28,"faculty":"Science","maths_req":50},
+    {"name":"BSc Computer Science","uni":"UCT","code":"UCT","aps":36,"faculty":"Science","maths_req":70},
+    {"name":"BCom","uni":"UCT","code":"UCT","aps":32,"faculty":"Commerce","maths_req":50},
+    {"name":"BA","uni":"UCT","code":"UCT","aps":28,"faculty":"Humanities","maths_req":0},
+    {"name":"Diploma in Agriculture","uni":"UKZN","code":"UKZN","aps":22,"faculty":"Agriculture","maths_req":0},
+    {"name":"BSc Agriculture","uni":"UKZN","code":"UKZN","aps":28,"faculty":"Science","maths_req":50},
+    {"name":"BSc Life Sciences","uni":"UFS","code":"UFS","aps":24,"faculty":"Science","maths_req":40},
+    {"name":"BEd Foundation Phase","uni":"NWU","code":"NWU","aps":22,"faculty":"Education","maths_req":0},
+    {"name":"BSc IT","uni":"NWU","code":"NWU","aps":26,"faculty":"Science","maths_req":50},
+    {"name":"Diploma in Tourism Management","uni":"TUT","code":"TUT","aps":20,"faculty":"Management","maths_req":0},
+    {"name":"Diploma in IT","uni":"TUT","code":"TUT","aps":22,"faculty":"ICT","maths_req":0},
+    {"name":"National Diploma Nursing","uni":"DUT","code":"DUT","aps":22,"faculty":"Health","maths_req":0},
+    {"name":"BSc Biological Sciences","uni":"NMU","code":"NMU","aps":26,"faculty":"Science","maths_req":45},
+    {"name":"Diploma in Business Management","uni":"CPUT","code":"CPUT","aps":20,"faculty":"Business","maths_req":0},
+    {"name":"BEd","uni":"UNISA","code":"UNISA","aps":20,"faculty":"Education","maths_req":0},
+    {"name":"Higher Certificate in Accounting","uni":"UNISA","code":"UNISA","aps":18,"faculty":"Business","maths_req":0},
+    {"name":"BCom Accounting","uni":"UWC","code":"UWC","aps":28,"faculty":"Commerce","maths_req":50},
+]
+
+def pct_to_points(p):
+    if p >= 80: return 7
+    if p >= 70: return 6
+    if p >= 60: return 5
+    if p >= 50: return 4
+    if p >= 40: return 3
+    if p >= 30: return 2
+    return 1
+
 @app.route('/')
-def home():
-    return render_template('landing.html')
+def home(): return render_template('landing.html')
 
 @app.route('/universities')
-def universities():
-    return render_template('universities.html', universities=UNIVERSITIES)
+def universities(): return render_template('universities.html', universities=UNIVERSITIES)
 
 @app.route('/university/<code>')
 def uni_detail(code):
     uni = next((u for u in UNIVERSITIES if u['code']==code), None)
-    if not uni:
-        return "Not Found", 404
+    if not uni: return "Not Found", 404
     return render_template('courses.html', uni=uni)
 
-# NEW - FIXES YOUR NOT FOUND ERROR
 @app.route('/aps')
-def aps_page():
-    return render_template('subjects.html')
+def aps_page(): return render_template('subjects.html')
 
 @app.route('/subjects')
-def subjects_page():
-    return render_template('subjects.html')
+def subjects_page(): return render_template('subjects.html')
 
-@app.route('/check-requirements')
-def check_req():
-    return render_template('subjects.html')
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    try:
+        main_pcts = []
+        for k in ['hl_pct','fal_pct','maths_pct','s5_pct','s6_pct','s7_pct']:
+            v = request.form.get(k)
+            if v and v.isdigit():
+                main_pcts.append(int(v))
+        aps = sum(pct_to_points(p) for p in main_pcts[:6]) if main_pcts else 0
+        maths_pct = int(request.form.get('maths_pct') or 0)
+        qualified = []
+        for course in COURSES_DB:
+            if aps >= course['aps'] and maths_pct >= course['maths_req']:
+                uni_obj = next((u for u in UNIVERSITIES if u['code']==course['code']), None)
+                course['apply_link'] = uni_obj['apply_link'] if uni_obj else "#"
+                qualified.append(course)
+        qualified = sorted(qualified, key=lambda x: x['aps'])
+        return render_template('results.html', aps=aps, qualified=qualified, total=len(COURSES_DB))
+    except Exception as e:
+        return f"Error: {e}", 500
 
 if __name__ == '__main__':
     app.run(debug=True)
