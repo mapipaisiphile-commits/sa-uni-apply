@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enter Your Subjects - Calculate APS</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;margin:0;padding:15px}
+.box{max-width:900px;margin:0 auto;background:white;color:black;border-radius:16px;padding:20px}
+h2{text-align:center;color:#0f172a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.subject{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:15px}
+.subject label{font-weight:bold;display:block;margin-bottom:6px;font-size:14px}
+.subject select, .subject input{width:100%;padding:10px;border-radius:8px;border:1px solid #cbd5e1;margin-top:5px}
+.percent{display:flex;gap:8px;align-items:center}
+.percent input{flex:1}
+.btn{background:#2563eb;color:white;padding:15px;border-radius:12px;border:none;width:100%;font-weight:bold;font-size:18px;margin-top:20px;cursor:pointer}
+.back{color:#facc15;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="/" class="back">← Back to Home</a>
+<div class="box">
+<h2>📚 Enter Your 7 Subjects (or 10)</h2>
+<p style="text-align:center;color:#64748b;font-size:14px">Choose subject + enter your % - Example: Home Language = IsiXhosa 75%</p>
+
+<form action="/universities">
+<div class="grid">
+
+<div class="subject">
+<label>1. Home Language</label>
+<select>
+<option>Select Home Language</option>
+<option>IsiXhosa Home Language</option>
+<option>IsiZulu Home Language</option>
+<option>Sepedi Home Language</option>
+<option>Sesotho Home Language</option>
+<option>Setswana Home Language</option>
+<option>SiSwati Home Language</option>
+<option>Tshivenda Home Language</option>
+<option>Xitsonga Home Language</option>
+<option>Afrikaans Home Language</option>
+<option>English Home Language</option>
+<option>IsiNdebele Home Language</option>
+</select>
+<div class="percent"><input type="number" placeholder="Enter % e.g 75" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>2. First Additional Language</label>
+<select>
+<option>Select First Additional</option>
+<option>English First Additional</option>
+<option>Afrikaans First Additional</option>
+<option>IsiXhosa First Additional</option>
+<option>IsiZulu First Additional</option>
+<option>Sepedi First Additional</option>
+<option>Sesotho First Additional</option>
+<option>Setswana First Additional</option>
+<option>SiSwati First Additional</option>
+<option>Tshivenda First Additional</option>
+<option>Xitsonga First Additional</option>
+<option>IsiNdebele First Additional</option>
+</select>
+<div class="percent"><input type="number" placeholder="Enter % e.g 68" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>3. Maths</label>
+<select>
+<option>Select Maths</option>
+<option>Mathematics</option>
+<option>Mathematical Literacy</option>
+<option>Technical Mathematics</option>
+</select>
+<div class="percent"><input type="number" placeholder="Enter % e.g 55" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>4. Life Orientation</label>
+<select><option>Life Orientation</option></select>
+<div class="percent"><input type="number" placeholder="Enter % e.g 80" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>5. Subject 5</label>
+<select>
+<option>Select Subject</option>
+<option>Accounting</option>
+<option>Agricultural Sciences</option>
+<option>Business Studies</option>
+<option>Computer Applications Technology (CAT)</option>
+<option>Economics</option>
+<option>Geography</option>
+<option>History</option>
+<option>Life Sciences</option>
+<option>Physical Sciences</option>
+<option>Tourism</option>
+<option>Consumer Studies</option>
+<option>Information Technology (IT)</option>
+<option>Engineering Graphics and Design (EGD)</option>
+<option>Dramatic Arts</option>
+</select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>6. Subject 6</label>
+<select>
+<option>Select Subject</option>
+<option>Accounting</option>
+<option>Agricultural Sciences</option>
+<option>Business Studies</option>
+<option>Computer Applications Technology (CAT)</option>
+<option>Economics</option>
+<option>Geography</option>
+<option>History</option>
+<option>Life Sciences</option>
+<option>Physical Sciences</option>
+<option>Tourism</option>
+<option>Consumer Studies</option>
+<option>Information Technology (IT)</option>
+<option>Engineering Graphics and Design (EGD)</option>
+<option>Dramatic Arts</option>
+</select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject">
+<label>7. Subject 7</label>
+<select>
+<option>Select Subject</option>
+<option>Accounting</option>
+<option>Agricultural Sciences</option>
+<option>Business Studies</option>
+<option>Computer Applications Technology (CAT)</option>
+<option>Economics</option>
+<option>Geography</option>
+<option>History</option>
+<option>Life Sciences</option>
+<option>Physical Sciences</option>
+<option>Tourism</option>
+<option>Consumer Studies</option>
+<option>Information Technology (IT)</option>
+<option>Engineering Graphics and Design (EGD)</option>
+<option>Dramatic Arts</option>
+</select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+
+<div class="subject" style="border-style:dashed">
+<label>8. Extra Subject (if you do 10 subjects)</label>
+<select><option>Optional - Select</option><option>Any other subject</option></select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+<div class="subject" style="border-style:dashed">
+<label>9. Extra Subject</label>
+<select><option>Optional - Select</option><option>Any other subject</option></select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+<div class="subject" style="border-style:dashed">
+<label>10. Extra Subject</label>
+<select><option>Optional - Select</option><option>Any other subject</option></select>
+<div class="percent"><input type="number" placeholder="%" min="0" max="100"><span>%</span></div>
+</div>
+
+</div>
+
+<button class="btn" type="submit">Calculate My APS & Show Universities I Qualify For →</button>
+<p style="text-align:center;color:#94a3b8;font-size:12px;margin-top:10px">We calculate APS: 80-100%=7, 70-79%=6, 60-69%=5, 50-59%=4, 40-49%=3, 30-39%=2, 0-29%=1 (Life Orientation excluded at some unis)</p>
+</form>
+</div>
+</body>
+</html>

@@ -13,10 +13,11 @@ body{margin:0;font-family:Arial;background:#0f172a;color:white}
 .btn{padding:12px 20px;border-radius:10px;font-weight:bold;text-decoration:none;display:inline-block;margin-top:10px}
 .btn-white{background:white;color:#2563eb}
 .btn-black{background:black;color:#facc15}
-.steps{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:1100px;margin:20px auto}
-.step{flex:1;min-width:200px;background:#1e293b;padding:15px;border-radius:12px;text-decoration:none;color:white;border:2px solid transparent}
-.step:hover{border-color:#facc15;transform:translateY(-3px)}
-.step b{color:#facc15}
+.steps-row{display:flex;gap:15px;justify-content:center;max-width:750px;margin:25px auto;flex-wrap:wrap}
+.step-card{flex:1;min-width:250px;background:#1e293b;padding:18px;border-radius:12px;text-decoration:none;color:white;border:2px solid #facc15;display:block;text-align:center}
+.step-card:hover{transform:translateY(-3px);background:#233047}
+.step-card b{color:#facc15;font-size:16px}
+.nsfas{max-width:1000px;margin:30px auto;background:white;color:black;border-radius:16px;padding:20px}
 </style>
 </head>
 <body>
@@ -42,24 +43,19 @@ body{margin:0;font-family:Arial;background:#0f172a;color:white}
 </div>
 </div>
 
-<a href="/aps" style="text-decoration:none">
-<div class="steps">
-<div class="step" style="cursor:pointer">
+<!-- ONLY 1 and 2 - NUMBER 3 REMOVED -->
+<div class="steps-row">
+<a href="/aps" class="step-card">
 <b>1. Calculate APS</b><br>
-<small>Use our APS calculator to see what courses you qualify for. Click here →</small>
-</div>
-<div class="step" style="cursor:pointer">
-<b>2. Check Requirements</b><br>
-<small>We show you required subjects like Maths, English & APS. Click to see courses →</small>
-</div>
-<div class="step">
-<b>3. Official Apply</b><br>
-<small>Click official apply - we send you to the real university website. No scams.</small>
-</div>
-</div>
+<small>Enter subjects with % like IsiXhosa 75% → Click here to calculate</small>
 </a>
+<a href="/subjects" class="step-card">
+<b>2. Check Requirements</b><br>
+<small>Choose your subjects: Home Language, Maths, Physics, Life Sciences etc. with % →</small>
+</a>
+</div>
 
-<div id="nsfas" style="max-width:1000px;margin:30px auto;background:white;color:black;border-radius:16px;padding:20px">
+<div id="nsfas" class="nsfas">
 <h3>🔥 NSFAS 2026 - Full Guide</h3>
 <p><b>NSFAS covers:</b> Tuition + Accommodation + Books + Transport + Food</p>
 <div style="display:flex;gap:20px;flex-wrap:wrap">
