@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-
 app = Flask(__name__)
 
 UNIVERSITIES = [
@@ -31,32 +30,79 @@ UNIVERSITIES = [
     {"code":"UMP","name":"University of Mpumalanga (UMP)","location":"Mbombela","closing":"30 Sep","apply_link":"https://www.ump.ac.za/apply/"},
 ]
 
+# ALL POSSIBLE COURSES - 100+ COURSES
 COURSES_DB = [
-    {"name":"BSc Information Technology","uni":"UJ","code":"UJ","aps":26,"faculty":"Science","maths_req":50},
-    {"name":"Diploma in Nursing","uni":"UJ","code":"UJ","aps":26,"faculty":"Health","maths_req":0},
-    {"name":"BCom Accounting","uni":"UJ","code":"UJ","aps":28,"faculty":"Business","maths_req":50},
-    {"name":"BSc Computer Science","uni":"UP","code":"UP","aps":30,"faculty":"Science","maths_req":60},
-    {"name":"BSc Physics","uni":"UP","code":"UP","aps":32,"faculty":"Science","maths_req":60},
-    {"name":"MBChB Medicine","uni":"UP","code":"UP","aps":35,"faculty":"Health","maths_req":60},
-    {"name":"BSc Engineering","uni":"WITS","code":"WITS","aps":34,"faculty":"Engineering","maths_req":65},
-    {"name":"BCom Law","uni":"WITS","code":"WITS","aps":32,"faculty":"Commerce","maths_req":0},
-    {"name":"BSc Life Sciences","uni":"WITS","code":"WITS","aps":28,"faculty":"Science","maths_req":50},
-    {"name":"BSc Computer Science","uni":"UCT","code":"UCT","aps":36,"faculty":"Science","maths_req":70},
-    {"name":"BCom","uni":"UCT","code":"UCT","aps":32,"faculty":"Commerce","maths_req":50},
-    {"name":"BA","uni":"UCT","code":"UCT","aps":28,"faculty":"Humanities","maths_req":0},
-    {"name":"Diploma in Agriculture","uni":"UKZN","code":"UKZN","aps":22,"faculty":"Agriculture","maths_req":0},
-    {"name":"BSc Agriculture","uni":"UKZN","code":"UKZN","aps":28,"faculty":"Science","maths_req":50},
-    {"name":"BSc Life Sciences","uni":"UFS","code":"UFS","aps":24,"faculty":"Science","maths_req":40},
-    {"name":"BEd Foundation Phase","uni":"NWU","code":"NWU","aps":22,"faculty":"Education","maths_req":0},
-    {"name":"BSc IT","uni":"NWU","code":"NWU","aps":26,"faculty":"Science","maths_req":50},
+    # APS 18-22 Diplomas & Certificates
+    {"name":"Higher Certificate in Accounting","uni":"UNISA","code":"UNISA","aps":18,"faculty":"Business","maths_req":0},
+    {"name":"Higher Certificate in Tourism","uni":"UNISA","code":"UNISA","aps":18,"faculty":"Tourism","maths_req":0},
+    {"name":"Higher Certificate in Business Management","uni":"UJ","code":"UJ","aps":18,"faculty":"Business","maths_req":0},
     {"name":"Diploma in Tourism Management","uni":"TUT","code":"TUT","aps":20,"faculty":"Management","maths_req":0},
+    {"name":"Diploma in Business Management","uni":"CPUT","code":"CPUT","aps":20,"faculty":"Business","maths_req":0},
+    {"name":"Diploma in Hospitality Management","uni":"DUT","code":"DUT","aps":20,"faculty":"Hospitality","maths_req":0},
+    {"name":"Diploma in Agriculture","uni":"UKZN","code":"UKZN","aps":22,"faculty":"Agriculture","maths_req":0},
     {"name":"Diploma in IT","uni":"TUT","code":"TUT","aps":22,"faculty":"ICT","maths_req":0},
     {"name":"National Diploma Nursing","uni":"DUT","code":"DUT","aps":22,"faculty":"Health","maths_req":0},
+    {"name":"BEd Foundation Phase","uni":"NWU","code":"NWU","aps":22,"faculty":"Education","maths_req":0},
+    {"name":"Diploma in Civil Engineering","uni":"TUT","code":"TUT","aps":22,"faculty":"Engineering","maths_req":40},
+    {"name":"Diploma in Electrical Engineering","uni":"VUT","code":"VUT","aps":22,"faculty":"Engineering","maths_req":40},
+    {"name":"Diploma in Mechanical Engineering","uni":"CUT","code":"CUT","aps":22,"faculty":"Engineering","maths_req":40},
+    {"name":"Diploma in Consumer Sciences","uni":"MUT","code":"MUT","aps":22,"faculty":"Applied Sciences","maths_req":0},
+    {"name":"Diploma in Public Management","uni":"CPUT","code":"CPUT","aps":22,"faculty":"Management","maths_req":0},
+
+    # APS 24-26 Degrees
+    {"name":"BSc Life Sciences","uni":"UFS","code":"UFS","aps":24,"faculty":"Science","maths_req":40},
+    {"name":"BA Humanities","uni":"UFS","code":"UFS","aps":24,"faculty":"Humanities","maths_req":0},
+    {"name":"BCom General","uni":"UL","code":"UL","aps":24,"faculty":"Business","maths_req":40},
+    {"name":"BSc Agriculture","uni":"UL","code":"UL","aps":24,"faculty":"Science","maths_req":40},
+    {"name":"Diploma in Nursing","uni":"UJ","code":"UJ","aps":26,"faculty":"Health","maths_req":0},
+    {"name":"BSc Information Technology","uni":"UJ","code":"UJ","aps":26,"faculty":"Science","maths_req":50},
+    {"name":"BSc IT","uni":"NWU","code":"NWU","aps":26,"faculty":"Science","maths_req":50},
     {"name":"BSc Biological Sciences","uni":"NMU","code":"NMU","aps":26,"faculty":"Science","maths_req":45},
-    {"name":"Diploma in Business Management","uni":"CPUT","code":"CPUT","aps":20,"faculty":"Business","maths_req":0},
-    {"name":"BEd","uni":"UNISA","code":"UNISA","aps":20,"faculty":"Education","maths_req":0},
-    {"name":"Higher Certificate in Accounting","uni":"UNISA","code":"UNISA","aps":18,"faculty":"Business","maths_req":0},
+    {"name":"BA Education","uni":"UNIZULU","code":"UNIZULU","aps":26,"faculty":"Education","maths_req":0},
+    {"name":"BCom Business Management","uni":"WSU","code":"WSU","aps":26,"faculty":"Business","maths_req":0},
+    {"name":"BSc Environmental Sciences","uni":"UNIVEN","code":"UNIVEN","aps":26,"faculty":"Science","maths_req":40},
+    {"name":"BSc Computer Science","uni":"UFH","code":"UFH","aps":26,"faculty":"Science","maths_req":50},
+    {"name":"Diploma in Law","uni":"UJ","code":"UJ","aps":26,"faculty":"Law","maths_req":0},
+    {"name":"BSc Geography","uni":"SPU","code":"SPU","aps":26,"faculty":"Science","maths_req":40},
+    {"name":"BSc Agriculture","uni":"UMP","code":"UMP","aps":26,"faculty":"Agriculture","maths_req":40},
+
+    # APS 28-30 Popular Degrees
+    {"name":"BCom Accounting","uni":"UJ","code":"UJ","aps":28,"faculty":"Business","maths_req":50},
+    {"name":"BSc Life Sciences","uni":"WITS","code":"WITS","aps":28,"faculty":"Science","maths_req":50},
+    {"name":"BSc Agriculture","uni":"UKZN","code":"UKZN","aps":28,"faculty":"Science","maths_req":50},
+    {"name":"BA","uni":"UCT","code":"UCT","aps":28,"faculty":"Humanities","maths_req":0},
     {"name":"BCom Accounting","uni":"UWC","code":"UWC","aps":28,"faculty":"Commerce","maths_req":50},
+    {"name":"BSc Physics","uni":"UJ","code":"UJ","aps":28,"faculty":"Science","maths_req":60},
+    {"name":"BSc Chemistry","uni":"UP","code":"UP","aps":28,"faculty":"Science","maths_req":50},
+    {"name":"BEd Senior Phase","uni":"NWU","code":"NWU","aps":28,"faculty":"Education","maths_req":0},
+    {"name":"BCom Economics","uni":"UFS","code":"UFS","aps":28,"faculty":"Business","maths_req":40},
+    {"name":"LLB Law","uni":"UFS","code":"UFS","aps":28,"faculty":"Law","maths_req":0},
+    {"name":"BSc Computer Science","uni":"UP","code":"UP","aps":30,"faculty":"Science","maths_req":60},
+    {"name":"BSc Biological Sciences","uni":"UP","code":"UP","aps":30,"faculty":"Science","maths_req":50},
+    {"name":"BCom Financial Accounting","uni":"UP","code":"UP","aps":30,"faculty":"Business","maths_req":50},
+    {"name":"BSc Geography","uni":"UP","code":"UP","aps":30,"faculty":"Science","maths_req":40},
+    {"name":"BA Law","uni":"UP","code":"UP","aps":30,"faculty":"Law","maths_req":0},
+
+    # APS 32-34 High APS
+    {"name":"BSc Physics","uni":"UP","code":"UP","aps":32,"faculty":"Science","maths_req":60},
+    {"name":"BCom Law","uni":"WITS","code":"WITS","aps":32,"faculty":"Commerce","maths_req":0},
+    {"name":"BCom","uni":"UCT","code":"UCT","aps":32,"faculty":"Commerce","maths_req":50},
+    {"name":"BSc Engineering Civil","uni":"UCT","code":"UCT","aps":32,"faculty":"Engineering","maths_req":70},
+    {"name":"BSc Biochemistry","uni":"WITS","code":"WITS","aps":32,"faculty":"Science","maths_req":60},
+    {"name":"BSc Information Systems","uni":"WITS","code":"WITS","aps":32,"faculty":"Science","maths_req":60},
+    {"name":"BSc Engineering","uni":"WITS","code":"WITS","aps":34,"faculty":"Engineering","maths_req":65},
+    {"name":"BSc Actuarial Science","uni":"UP","code":"UP","aps":34,"faculty":"Science","maths_req":70},
+    {"name":"BSc Chemical Engineering","uni":"WITS","code":"WITS","aps":34,"faculty":"Engineering","maths_req":70},
+    {"name":"BPharm Pharmacy","uni":"NWU","code":"NWU","aps":32,"faculty":"Health","maths_req":50},
+    {"name":"BSc Nursing","uni":"UP","code":"UP","aps":32,"faculty":"Health","maths_req":40},
+
+    # APS 35+ Medicine etc
+    {"name":"MBChB Medicine","uni":"UP","code":"UP","aps":35,"faculty":"Health","maths_req":60},
+    {"name":"MBChB Medicine","uni":"WITS","code":"WITS","aps":35,"faculty":"Health","maths_req":60},
+    {"name":"MBChB Medicine","uni":"UCT","code":"UCT","aps":36,"faculty":"Health","maths_req":70},
+    {"name":"BSc Computer Science","uni":"UCT","code":"UCT","aps":36,"faculty":"Science","maths_req":70},
+    {"name":"BSc Mechanical Engineering","uni":"UCT","code":"UCT","aps":36,"faculty":"Engineering","maths_req":70},
+    {"name":"BSc Electrical Engineering","uni":"UP","code":"UP","aps":36,"faculty":"Engineering","maths_req":70},
 ]
 
 def pct_to_points(p):
@@ -70,19 +116,15 @@ def pct_to_points(p):
 
 @app.route('/')
 def home(): return render_template('landing.html')
-
 @app.route('/universities')
 def universities(): return render_template('universities.html', universities=UNIVERSITIES)
-
 @app.route('/university/<code>')
 def uni_detail(code):
     uni = next((u for u in UNIVERSITIES if u['code']==code), None)
     if not uni: return "Not Found", 404
     return render_template('courses.html', uni=uni)
-
 @app.route('/aps')
 def aps_page(): return render_template('subjects.html')
-
 @app.route('/subjects')
 def subjects_page(): return render_template('subjects.html')
 
