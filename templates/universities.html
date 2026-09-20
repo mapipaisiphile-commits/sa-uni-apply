@@ -7,7 +7,9 @@
 body{margin:0;font-family:Arial;background:#0f172a;color:white}
 .top{text-align:center;padding:20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px;max-width:1100px;margin:0 auto;padding:15px}
-.card{background:white;color:black;border-radius:12px;padding:15px;text-align:center}
+.card{background:white;color:black;border-radius:12px;overflow:hidden;text-align:center}
+.card img{width:100%;height:120px;object-fit:cover}
+.card-body{padding:15px}
 .btn{display:block;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;margin:6px 0}
 .green{background:#16a34a;color:white}
 .gray{background:#e2e8f0;color:black}
@@ -23,11 +25,13 @@ body{margin:0;font-family:Arial;background:#0f172a;color:white}
 <div class="grid">
 {% for uni in universities %}
 <div class="card">
+<img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=200&fit=crop">
+<div class="card-body">
 <h4 style="margin:5px 0">{{uni.name}}</h4>
 <small>{{uni.location}} • Closing: {{uni.closing}}</small><br><br>
 <a href="{{uni.apply_link}}" target="_blank" class="btn green">✅ Official Apply ↗</a>
 <a href="{{uni.apply_link}}" target="_blank" class="btn gray">📄 Prospectus</a>
-<a href="/university/{{uni.code}}" class="btn" style="background:#facc15;color:black">View Details</a>
+</div>
 </div>
 {% endfor %}
 </div>
